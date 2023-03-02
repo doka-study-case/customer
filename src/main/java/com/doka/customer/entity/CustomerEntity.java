@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,7 +25,10 @@ public class CustomerEntity {
     private String name;
     private String address;
 
-    @Column(name = "register_date", columnDefinition = Const.Definition.TIMESTAMP_WITH_TIMEZONE)
+    @Column(name = "register_date",
+            columnDefinition = Const.Definition.TIMESTAMP_WITH_TIMEZONE,
+            insertable = false, updatable = false
+    )
     private LocalDateTime registerDate;
 
     private String password;
