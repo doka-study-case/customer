@@ -29,6 +29,13 @@ public class CustomerController {
         return ResponseEntity.ok(customers);
     }
 
+    @GetMapping("{customerId}")
+    public ResponseEntity<CustomerEntity> find(@Valid @PathVariable("customerId") Long customerId) {
+        CustomerEntity customer = customerService.findById(customerId);
+
+        return ResponseEntity.ok(customer);
+    }
+
     @PostMapping
     public ResponseEntity<CustomerEntity> register(@Valid @RequestBody CustomerRegisterDto customerRegisterDto) {
         CustomerEntity registerCustomer = customerService.register(customerRegisterDto);
