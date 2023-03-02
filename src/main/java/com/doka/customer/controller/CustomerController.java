@@ -3,7 +3,6 @@ package com.doka.customer.controller;
 import com.doka.customer.dto.input.AccountCreateDto;
 import com.doka.customer.dto.input.CustomerRegisterDto;
 import com.doka.customer.dto.query.CustomersQueryDto;
-import com.doka.customer.dto.query.PaginationQueryDto;
 import com.doka.customer.entity.AccountEntity;
 import com.doka.customer.entity.CustomerEntity;
 import com.doka.customer.service.AccountService;
