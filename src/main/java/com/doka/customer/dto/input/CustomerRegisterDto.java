@@ -20,8 +20,6 @@ public class CustomerRegisterDto {
     @NotNull
     private CustomerType type;
 
-    private BigDecimal initialBalance;
-
     @NotBlank
     @Min(6)
     private String password;
