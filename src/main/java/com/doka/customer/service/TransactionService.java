@@ -6,6 +6,7 @@ import com.doka.customer.entity.CustomerEntity;
 import com.doka.customer.entity.TransactionEntity;
 import com.doka.customer.exception.DokaException;
 import com.doka.customer.service.transaction.*;
+import com.sun.xml.bind.v2.TODO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -30,11 +31,13 @@ public class TransactionService {
     @Autowired
     ModelMapper modelMapper;
 
+    // TODO: para transferi yapıldığında transaction tablosuna log atılacak.
     public TransactionEntity save(Long customerId, TransactionDto transactionDto) {
+        // TODO("will be implemented")
         TransactionEntity transactionEntity = modelMapper.map(transactionDto, TransactionEntity.class);
         transactionEntity.setCustomerId(customerId);
 
-
+        return transactionEntity;
     }
 
     @Transactional
