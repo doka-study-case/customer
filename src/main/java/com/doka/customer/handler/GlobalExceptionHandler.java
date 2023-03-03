@@ -69,6 +69,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler
     public ResponseEntity<DokaExceptionResponseDto> handleAllOtherExceptions(Exception exception) {
+        exception.printStackTrace();
+
         DokaExceptionResponseDto apiResponse = new DokaExceptionResponseDto(exception.getMessage());
 
         // TODO: send log to rabbit queue
