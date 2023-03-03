@@ -61,9 +61,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 // generate refresh-token
                 String newToken = tokenManager.generateToken(String.valueOf(customerId), null);
                 response.setHeader("refresh-token", newToken);
-
-                filterChain.doFilter(request, response);
             }
+
+            filterChain.doFilter(request, response);
         } else {
             ApiResponseDto apiResponseDto = new ApiResponseDto(errorMessage);
             String newContent = gson.toJson(apiResponseDto);
