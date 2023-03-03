@@ -1,6 +1,9 @@
 package com.doka.customer.service;
 
+import com.doka.customer.dto.input.CustomerLoginDto;
 import com.doka.customer.dto.input.CustomerRegisterDto;
+import com.doka.customer.dto.output.ApiResponseDto;
+import com.doka.customer.dto.output.CustomerOutputDto;
 import com.doka.customer.dto.query.CustomersQueryDto;
 import com.doka.customer.entity.CustomerEntity;
 import com.doka.customer.exception.DokaException;
@@ -45,6 +48,18 @@ public class CustomerService {
     public CustomerEntity findById(Long id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new DokaException("Customer is not found", HttpStatus.NOT_FOUND));
+    }
+
+    @SneakyThrows
+    public CustomerEntity login(CustomerLoginDto customerLoginDto) {
+        CustomerEntity customerEntity = customerRepository.findById(customerLoginDto.getId())
+                .orElseThrow(() -> new DokaException("Customer is not found", HttpStatus.NOT_FOUND));
+
+        if (!customerLoginDto.getPassword().equals(customerEntity.getPassword())) {
+            throw new DokaException("Login failed: bad credentials");
+        }
+
+        return customerEntity;
     }
 
 }

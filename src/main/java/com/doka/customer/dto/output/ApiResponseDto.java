@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DokaExceptionResponseDto {
+public class ApiResponseDto {
 
     private String message;
 

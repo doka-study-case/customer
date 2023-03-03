@@ -1,6 +1,6 @@
 package com.doka.customer.handler;
 
-import com.doka.customer.dto.output.DokaExceptionResponseDto;
+import com.doka.customer.dto.output.ApiResponseDto;
 import com.doka.customer.exception.DokaException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
      * Validation hatalarını yakalar ve uygun bir hata mesajı döner.
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<DokaExceptionResponseDto> handleValidationErrors(MethodArgumentNotValidException exception) {
+    public ResponseEntity<ApiResponseDto> handleValidationErrors(MethodArgumentNotValidException exception) {
         Optional<String> firstErrorMessage = exception.getBindingResult()
                 .getFieldErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .findFirst();
@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
             message = firstErrorMessage.get();
         }
 
-        DokaExceptionResponseDto apiResponse = new DokaExceptionResponseDto(message);
+        ApiResponseDto apiResponse = new ApiResponseDto(message);
 
         // TODO: send log to rabbit queue
 //        new SLCLogger(GlobalExceptionHandler.class.getSimpleName(), "handleValidationErrors")
@@ -49,8 +49,8 @@ public class GlobalExceptionHandler {
      * Kod tarafından fırlatılan DokaException'lar için hata mesajı döner.
      */
     @ExceptionHandler(DokaException.class)
-    public ResponseEntity<DokaExceptionResponseDto> handleDokaExceptions(DokaException exception) {
-        DokaExceptionResponseDto apiResponse = new DokaExceptionResponseDto(exception.getMessage());
+    public ResponseEntity<ApiResponseDto> handleDokaExceptions(DokaException exception) {
+        ApiResponseDto apiResponse = new ApiResponseDto(exception.getMessage());
 
         // TODO: send log to rabbit queue
 //        new SLCLogger(GlobalExceptionHandler.class.getSimpleName(), "handleApiExceptions")
@@ -68,10 +68,10 @@ public class GlobalExceptionHandler {
      * Geri kalan tüm exception'ları yakalar.
      */
     @ExceptionHandler
-    public ResponseEntity<DokaExceptionResponseDto> handleAllOtherExceptions(Exception exception) {
+    public ResponseEntity<ApiResponseDto> handleAllOtherExceptions(Exception exception) {
         exception.printStackTrace();
 
-        DokaExceptionResponseDto apiResponse = new DokaExceptionResponseDto(exception.getMessage());
+        ApiResponseDto apiResponse = new ApiResponseDto(exception.getMessage());
 
         // TODO: send log to rabbit queue
 //        new SLCLogger(GlobalExceptionHandler.class.getSimpleName(), "handleAllOtherExceptions")

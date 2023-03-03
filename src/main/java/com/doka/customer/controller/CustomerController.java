@@ -1,15 +1,18 @@
 package com.doka.customer.controller;
 
 import com.doka.customer.dto.input.AccountCreateDto;
+import com.doka.customer.dto.input.CustomerLoginDto;
 import com.doka.customer.dto.input.CustomerRegisterDto;
+import com.doka.customer.dto.output.ApiResponseDto;
 import com.doka.customer.dto.query.CustomersQueryDto;
 import com.doka.customer.entity.AccountEntity;
 import com.doka.customer.entity.CustomerEntity;
-import com.doka.customer.enums.CustomerType;
 import com.doka.customer.queue.EventProducer;
 import com.doka.customer.queue.QueueEvent;
+import com.doka.customer.security.TokenManager;
 import com.doka.customer.service.AccountService;
 import com.doka.customer.service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("customers")
+@Slf4j
 public class CustomerController {
 
     @Autowired
@@ -30,6 +34,9 @@ public class CustomerController {
 
     @Autowired
     EventProducer eventProducer;
+
+    @Autowired
+    TokenManager tokenManager;
 
     @GetMapping
     public ResponseEntity<List<CustomerEntity>> findAll(CustomersQueryDto customersQueryDto) {
@@ -85,6 +92,19 @@ public class CustomerController {
         eventProducer.send(queueEvent);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAccount);
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<ApiResponseDto> login(@Valid @RequestBody CustomerLoginDto customerLoginDto) {
+        log.info("login");
+        CustomerEntity customerEntity = customerService.login(customerLoginDto);
+
+        ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.ok();
+        bodyBuilder.header("auth-token",
+                tokenManager.generateToken(String.valueOf(customerEntity.getId()), null));
+
+        ApiResponseDto apiResponseDto = new ApiResponseDto("Welcome " + customerEntity.getName());
+        return bodyBuilder.body(apiResponseDto);
     }
 
 }
