@@ -1,7 +1,6 @@
 package com.doka.customer.dto.input;
 
 import com.doka.customer.enums.TransactionType;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

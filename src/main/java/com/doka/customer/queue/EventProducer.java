@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class EventProducer {
 
@@ -22,6 +24,8 @@ public class EventProducer {
     Gson gson;
 
     public void send(QueueEvent queueEvent) {
+        queueEvent.addParam("log_date", LocalDateTime.now());
+
         String log = gson.toJson(queueEvent.getLogParams());
         rabbitTemplate.convertAndSend(exchangeName, routingName, log);
     }

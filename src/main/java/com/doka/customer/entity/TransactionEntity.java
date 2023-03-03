@@ -36,6 +36,7 @@ public class TransactionEntity {
 
     @Column(name = "target_customer_id")
     private Long targetCustomerId;
+
     private String corporation;
 
     @Column(name = "transaction_date",

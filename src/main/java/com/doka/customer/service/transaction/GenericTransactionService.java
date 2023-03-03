@@ -1,16 +1,11 @@
-package com.doka.customer.service;
+package com.doka.customer.service.transaction;
 
 import com.doka.customer.dto.input.TransactionDto;
 import com.doka.customer.enums.CustomerType;
 
 import java.math.BigDecimal;
 
-public interface GenericTransaction {
-
-    /**
-     * Transaction fee ratio depends on customer type
-     */
-    float getFeeRatio(CustomerType customerType);
+public interface GenericTransactionService {
 
     BigDecimal calculateFee(CustomerType customerType, BigDecimal amount);
 

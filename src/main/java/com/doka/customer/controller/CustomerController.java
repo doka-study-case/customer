@@ -96,7 +96,6 @@ public class CustomerController {
 
     @PostMapping("login")
     public ResponseEntity<ApiResponseDto> login(@Valid @RequestBody CustomerLoginDto customerLoginDto) {
-        log.info("login");
         CustomerEntity customerEntity = customerService.login(customerLoginDto);
 
         ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.ok();
