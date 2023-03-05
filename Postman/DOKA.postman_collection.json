@@ -1,0 +1,1213 @@
+{
+	"info": {
+		"_postman_id": "0607eefc-56cb-43a7-a400-0eba0b99ac7d",
+		"name": "DOKA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9581500"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Register customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Enerjisa\",\n    \"address\": \"Keçiören, Ankara\",\n    \"type\": \"BUSINESS\",\n    \"initialBalance\": 2500,\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/customers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Yunus Emre İnce\",\n    \"address\": \"Keçiören, Ankara\",\n    \"type\": \"BUSINESS\",\n    \"initialBalance\": 2500,\n    \"password\": \"12345\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Mar 2023 09:52:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 6,\n    \"type\": \"BUSINESS\",\n    \"name\": \"Yunus Emre İnce\",\n    \"address\": \"Keçiören, Ankara\",\n    \"password\": \"12345\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/customers?type=BUSINESS&limit=2&page=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "BUSINESS"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List all customers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/customers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Mar 2023 11:17:42 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 7,\n        \"type\": \"BUSINESS\",\n        \"name\": \"Yunus Emre İnce\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T13:06:38.365369\",\n        \"password\": \"12345\"\n    },\n    {\n        \"id\": 8,\n        \"type\": \"BUSINESS\",\n        \"name\": \"Yunus Emre İnce\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T13:10:51.811839\",\n        \"password\": \"12345\"\n    },\n    {\n        \"id\": 9,\n        \"type\": \"BUSINESS\",\n        \"name\": \"Yunus Emre İnce\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T13:11:32.166942\",\n        \"password\": \"12345\"\n    },\n    {\n        \"id\": 10,\n        \"type\": \"INDIVIDUAL\",\n        \"name\": \"Yunus Emre İnce\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T14:05:54.522439\",\n        \"password\": \"12345\"\n    },\n    {\n        \"id\": 11,\n        \"type\": \"INDIVIDUAL\",\n        \"name\": \"Ali\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T14:05:57.315536\",\n        \"password\": \"12345\"\n    },\n    {\n        \"id\": 12,\n        \"type\": \"INDIVIDUAL\",\n        \"name\": \"Veli\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T14:05:59.235974\",\n        \"password\": \"12345\"\n    },\n    {\n        \"id\": 13,\n        \"type\": \"BUSINESS\",\n        \"name\": \"Başkentgaz\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T14:06:06.239376\",\n        \"password\": \"12345\"\n    },\n    {\n        \"id\": 14,\n        \"type\": \"BUSINESS\",\n        \"name\": \"Enerjisa\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T14:06:13.885975\",\n        \"password\": \"12345\"\n    }\n]"
+						},
+						{
+							"name": "List BUSINESS customers only",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/customers?type=BUSINESS&limit=2&page=1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "BUSINESS"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Mar 2023 11:18:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 9,\n        \"type\": \"BUSINESS\",\n        \"name\": \"Yunus Emre İnce\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T13:11:32.166942\",\n        \"password\": \"12345\"\n    },\n    {\n        \"id\": 13,\n        \"type\": \"BUSINESS\",\n        \"name\": \"Başkentgaz\",\n        \"address\": \"Keçiören, Ankara\",\n        \"registerDate\": \"2023-03-02T14:06:06.239376\",\n        \"password\": \"12345\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/customers/7",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/customers/7",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Mar 2023 10:17:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"type\": \"BUSINESS\",\n    \"name\": \"Yunus Emre İnce\",\n    \"address\": \"Keçiören, Ankara\",\n    \"registerDate\": \"2023-03-02T13:06:38.365369\",\n    \"password\": \"12345\"\n}"
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/customers/777777",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"777777"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Mar 2023 10:17:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Customer is not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get customer accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/customers/7/accounts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers",
+								"7",
+								"accounts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "No account found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/customers/7/accounts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"7",
+										"accounts"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 02 Mar 2023 10:39:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Get customer accounts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/customers/12/accounts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"12",
+										"accounts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Mar 2023 20:20:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 4,\n        \"customerId\": 12,\n        \"iban\": \"TR1234567890123410\",\n        \"balance\": 98995.000000111758709,\n        \"createDate\": \"2023-03-03T22:34:58.837161\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create customer account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"initialBalance\": 130.5,\n    \"iban\": \"TR1234567890123457\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/customers/8/accounts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers",
+								"8",
+								"accounts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create account successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"initialBalance\": 130.5,\n    \"iban\": \"TR1234567890123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers/7/accounts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"7",
+										"accounts"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Mar 2023 10:54:13 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"customerId\": 7,\n    \"iban\": \"TR1234567890123456\",\n    \"balance\": 130.5\n}"
+						},
+						{
+							"name": "Iban is already existed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"initialBalance\": 0,\n    \"iban\": \"TR1234567890123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers/7/accounts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"7",
+										"accounts"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Mar 2023 10:58:26 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Iban is already existed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.response.to.have.status(200);",
+									"",
+									"pm.test(\"Authentication Success!\", function () {",
+									"    pm.response.to.have.header(\"auth-token\");",
+									"",
+									"    var token = pm.response.headers.get(\"auth-token\");",
+									"",
+									"    pm.environment.set(\"TOKEN\", token);",
+									"    pm.test(\"Token saved\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 7,\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/customers/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"customers",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Customer: 7 login successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 7,\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "auth-token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjc3ODcyMTk2LCJleHAiOjQ4MzM1NDU3OTZ9.kkIWSCpfocwc-g84jYkFNpzZJAHIEpg_GzOH4AfFBUs"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Mar 2023 19:36:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Welcome Yunus Emre İnce\"\n}"
+						},
+						{
+							"name": "Customer: 12 login successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 12,\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "auth-token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMiIsImlhdCI6MTY3Nzg3MjIxNiwiZXhwIjo0ODMzNTQ1ODE2fQ.dT-saJlyXdszHp9uxpH5Udw9FSFiI00t5dJh72lZm0U"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Mar 2023 19:36:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Welcome Veli\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Make transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.response.to.have.status(200);",
+									"",
+									"pm.test(\"Authentication Success!\", function () {",
+									"    pm.response.to.have.header(\"auth-token\");",
+									"",
+									"    var token = pm.response.headers.get(\"auth-token\");",
+									"",
+									"    pm.environment.set(\"TOKEN\", token);",
+									"    pm.test(\"Token saved\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\": 2,\n    \"type\": \"BILL_PAYMENT\",\n    \"iban\": \"TR1234567890123410\",\n    \"amount\": 1,\n    \"corporation\": \"başkentgaz\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/transactions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "✅ EFT from Business to Any",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 2,\n    \"type\": \"EFT\",\n    \"amount\": 1,\n    \"iban\": \"TR1234567890123457\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/transactions",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "refresh-token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjc3ODcxOTc1LCJleHAiOjQ4MzM1NDU1NzV9.s6s5TKd3XUTMK3hVK-X7gmSfBSDz7Cv_paR-ergyojU"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=EE99016517329BEF93079CAA206FF007; Path=/; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Mar 2023 19:32:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Transaction successful\"\n}"
+						},
+						{
+							"name": "✅ EFT from Individual to Any",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 4,\n    \"type\": \"EFT\",\n    \"amount\": 3,\n    \"iban\": \"TR1234567890123457\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/transactions",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "refresh-token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMiIsImlhdCI6MTY3Nzg3MjkzNiwiZXhwIjo0ODMzNTQ2NTM2fQ.PlUamz8C-O2DU_-vLYzn3aQVf2WesxkJ-Do-Fjm6vWk"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Mar 2023 19:48:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Transaction successful\"\n}"
+						},
+						{
+							"name": "✅ SALARY PAYMENT from Individual to Any",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 2,\n    \"type\": \"SALARY_PAYMENT\",\n    \"amount\": 5,\n    \"iban\": \"TR1234567890123410\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/transactions",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "refresh-token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjc3ODc0OTU3LCJleHAiOjQ4MzM1NDg1NTd9.8SAzgRpNXESC7wqeAcEE6S1tz-XmvJu6IyuxhRplqyQ"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Mar 2023 20:22:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Transaction successful\"\n}"
+						},
+						{
+							"name": "✅ BILL PAYMENT from Any",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 2,\n    \"type\": \"BILL_PAYMENT\",\n    \"amount\": 5,\n    \"corporation\": \"başkentgaz\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/transactions",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "refresh-token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNjc3ODc2MTg2LCJleHAiOjQ4MzM1NDk3ODZ9.FaM2CQWmTaRw81gCyu6WsmH-YYknpIK6bz9sI4DAQzI"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=AF2F01AECBCDA8DA5F15EAFB9A853B5A; Path=/; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Mar 2023 20:43:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Transaction successful\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
