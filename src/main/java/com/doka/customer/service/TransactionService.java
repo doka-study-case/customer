@@ -58,7 +58,6 @@ public class TransactionService {
             case SALARY_PAYMENT -> new SalaryPaymentTransactionService(accountService, feeCalculationService, eventProducer);
         };
 
-//        transaction.makeTransfer(customerId, customerEntity.getType(), transactionDto);
         transaction.makeTransfer(customerEntity.getType(), sourceAccountEntity, targetAccountEntity, transactionDto);
     }
 

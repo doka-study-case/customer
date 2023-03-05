@@ -10,8 +10,6 @@ public interface GenericTransactionService {
 
     BigDecimal calculateFee(CustomerType customerType, BigDecimal amount);
 
-    void makeTransfer(Long customerId, CustomerType customerType, TransactionDto transactionDto);
-
     void makeTransfer(CustomerType customerType,
                       AccountEntity sourceAccountEntity, AccountEntity targetAccountEntity,
                       TransactionDto transactionDto);

@@ -38,22 +38,6 @@ public class BillPaymentTransactionService implements GenericTransactionService 
 
     @Override
     @SneakyThrows
-    public void makeTransfer(Long customerId, CustomerType customerType, TransactionDto transactionDto) {
-        AccountEntity accountEntity = accountService.findById(transactionDto.getAccountId());
-
-        BigDecimal transactionFee = calculateFee(customerType, transactionDto.getAmount());
-        BigDecimal totalCost = transactionFee.add(transactionDto.getAmount());
-        if (accountEntity.getBalance().compareTo(totalCost) < 0) {
-            throw new DokaException("Insufficient account balance for transaction", HttpStatus.NOT_ACCEPTABLE);
-        }
-
-        BigDecimal newBalance = accountEntity.getBalance().subtract(totalCost);
-        accountEntity.setBalance(newBalance);
-        accountService.updateAccount(accountEntity);
-    }
-
-    @Override
-    @SneakyThrows
     public void makeTransfer(CustomerType customerType, AccountEntity sourceAccountEntity,
                              AccountEntity targetAccountEntity, TransactionDto transactionDto) {
         BigDecimal transactionFee = calculateFee(customerType, transactionDto.getAmount());

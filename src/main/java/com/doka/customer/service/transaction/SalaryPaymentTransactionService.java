@@ -39,32 +39,6 @@ public class SalaryPaymentTransactionService implements GenericTransactionServic
 
     @Override
     @SneakyThrows
-    public void makeTransfer(Long customerId, CustomerType customerType, TransactionDto transactionDto) {
-        AccountEntity accountEntity = accountService.findById(transactionDto.getAccountId());
-
-        AccountEntity targetAccountEntity = accountService.findByIban(transactionDto.getIban());
-
-        if (accountEntity.getId() == targetAccountEntity.getId()) {
-            throw new DokaException("Transfer failed. Target account and source account is same.", HttpStatus.NOT_ACCEPTABLE);
-        }
-
-        BigDecimal transactionFee = calculateFee(customerType, transactionDto.getAmount());
-        BigDecimal totalCost = transactionFee.add(transactionDto.getAmount());
-        if (accountEntity.getBalance().compareTo(totalCost) < 0) {
-            throw new DokaException("Insufficient account balance for transaction", HttpStatus.NOT_ACCEPTABLE);
-        }
-
-        BigDecimal newBalance = accountEntity.getBalance().subtract(totalCost);
-        accountEntity.setBalance(newBalance);
-        accountService.updateAccount(accountEntity);
-
-        BigDecimal targetNewBalance = targetAccountEntity.getBalance().add(transactionDto.getAmount());
-        targetAccountEntity.setBalance(targetNewBalance);
-        accountService.updateAccount(targetAccountEntity);
-    }
-
-    @Override
-    @SneakyThrows
     public void makeTransfer(CustomerType customerType, AccountEntity sourceAccountEntity,
                              AccountEntity targetAccountEntity, TransactionDto transactionDto) {
         BigDecimal transactionFee = calculateFee(customerType, transactionDto.getAmount());
