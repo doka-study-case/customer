@@ -46,7 +46,7 @@ public class TransactionController {
             queueEvent.addParam("corporation", transactionDto.getCorporation());
         }
 
-        eventProducer.send(queueEvent);
+        eventProducer.sendLog(queueEvent);
 
         return ResponseEntity.ok(apiResponseDto);
     }

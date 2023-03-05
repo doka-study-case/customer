@@ -5,9 +5,9 @@ import javax.persistence.Converter;
 import java.util.stream.Stream;
 
 @Converter(autoApply = true)
-public class TransactionTypeConverter implements AttributeConverter<TransactionType, String> {
+public class TransferTypeConverter implements AttributeConverter<TransferType, String> {
     @Override
-    public String convertToDatabaseColumn(TransactionType attribute) {
+    public String convertToDatabaseColumn(TransferType attribute) {
         if (attribute == null) {
             return null;
         }
@@ -16,12 +16,12 @@ public class TransactionTypeConverter implements AttributeConverter<TransactionT
     }
 
     @Override
-    public TransactionType convertToEntityAttribute(String dbData) {
+    public TransferType convertToEntityAttribute(String dbData) {
         if (dbData == null) {
             return null;
         }
 
-        return Stream.of(TransactionType.values())
+        return Stream.of(TransferType.values())
                 .filter(type -> type.toString().equalsIgnoreCase(dbData))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);

@@ -12,10 +12,22 @@ import java.time.LocalDateTime;
 public class EventProducer {
 
     @Value("${doka.rabbit.log.routing}")
-    private String routingName;
+    private String logRoutingName;
 
     @Value("${doka.rabbit.log.exchange}")
-    private String exchangeName;
+    private String logExchangeName;
+
+    @Value("${doka.rabbit.transaction.routing}")
+    private String transactionRoutingName;
+
+    @Value("${doka.rabbit.transaction.exchange}")
+    private String transactionExchangeName;
+
+    @Value("${doka.rabbit.notification.routing}")
+    private String notificationRoutingName;
+
+    @Value("${doka.rabbit.notification.exchange}")
+    private String notificationExchangeName;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -23,11 +35,25 @@ public class EventProducer {
     @Autowired
     Gson gson;
 
-    public void send(QueueEvent queueEvent) {
+    public void sendLog(QueueEvent queueEvent) {
         queueEvent.addParam("log_date", LocalDateTime.now());
 
-        String log = gson.toJson(queueEvent.getLogParams());
-        rabbitTemplate.convertAndSend(exchangeName, routingName, log);
+        String logJson = gson.toJson(queueEvent.getLogParams());
+        rabbitTemplate.convertAndSend(logExchangeName, logRoutingName, logJson);
+    }
+
+    public void sendTransaction(QueueTransaction queueTransaction) {
+        queueTransaction.setTransactionDate(LocalDateTime.now());
+
+        String transactionJson = gson.toJson(queueTransaction);
+        rabbitTemplate.convertAndSend(transactionExchangeName, transactionRoutingName, transactionJson);
+    }
+
+    public void sendNotification(QueueNotification queueNotification) {
+        queueNotification.setNotificationDate(LocalDateTime.now());
+
+        String notificationJson = gson.toJson(queueNotification);
+        rabbitTemplate.convertAndSend(notificationExchangeName, notificationRoutingName, notificationJson);
     }
 
 }
