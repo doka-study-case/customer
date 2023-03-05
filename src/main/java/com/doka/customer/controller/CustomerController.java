@@ -57,7 +57,7 @@ public class CustomerController {
                 .addParam("name", registeredCustomer.getName())
                 .addParam("customerId", registeredCustomer.getId())
                 .addParam("type", registeredCustomer.getType());
-        eventProducer.send(queueEvent);
+        eventProducer.sendLog(queueEvent);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredCustomer);
     }
@@ -89,14 +89,13 @@ public class CustomerController {
                 .setMessage("Customer account is registered")
                 .addParam("accountId", createdAccount.getId())
                 .addParam("iban", createdAccount.getIban());
-        eventProducer.send(queueEvent);
+        eventProducer.sendLog(queueEvent);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAccount);
     }
 
     @PostMapping("login")
     public ResponseEntity<ApiResponseDto> login(@Valid @RequestBody CustomerLoginDto customerLoginDto) {
-        log.info("login");
         CustomerEntity customerEntity = customerService.login(customerLoginDto);
 
         ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.ok();

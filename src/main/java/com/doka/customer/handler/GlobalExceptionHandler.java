@@ -2,6 +2,8 @@ package com.doka.customer.handler;
 
 import com.doka.customer.dto.output.ApiResponseDto;
 import com.doka.customer.exception.DokaException;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.Optional;
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     /**
@@ -35,53 +38,25 @@ public class GlobalExceptionHandler {
 
         ApiResponseDto apiResponse = new ApiResponseDto(message);
 
-        // TODO: send log to rabbit queue
-//        new SLCLogger(GlobalExceptionHandler.class.getSimpleName(), "handleValidationErrors")
-//                .apiResponse(apiResponse)
-//                .message(message)
-//                .statusCode(apiResponse.getKod())
-//                .sendErrorLog(exception);
-
         return ResponseEntity.badRequest().body(apiResponse);
-    }
-
-    /**
-     * Kod tarafından fırlatılan DokaException'lar için hata mesajı döner.
-     */
-    @ExceptionHandler(DokaException.class)
-    public ResponseEntity<ApiResponseDto> handleDokaExceptions(DokaException exception) {
-        ApiResponseDto apiResponse = new ApiResponseDto(exception.getMessage());
-
-        // TODO: send log to rabbit queue
-//        new SLCLogger(GlobalExceptionHandler.class.getSimpleName(), "handleApiExceptions")
-//                .apiResponse(apiResponse)
-//                .statusCode(apiResponse.getKod())
-//                .message(apiResponse.getMesaj())
-//                .sendErrorLog(exception);
-
-        return ResponseEntity
-                .status(exception.getErrorCode())
-                .body(apiResponse);
     }
 
     /**
      * Geri kalan tüm exception'ları yakalar.
      */
     @ExceptionHandler
-    public ResponseEntity<ApiResponseDto> handleAllOtherExceptions(Exception exception) {
-        exception.printStackTrace();
+    public ResponseEntity<ApiResponseDto> handleAllOtherExceptions(Throwable throwable) {
+        ApiResponseDto apiResponse = new ApiResponseDto(throwable.getMessage());
+        HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 
-        ApiResponseDto apiResponse = new ApiResponseDto(exception.getMessage());
-
-        // TODO: send log to rabbit queue
-//        new SLCLogger(GlobalExceptionHandler.class.getSimpleName(), "handleAllOtherExceptions")
-//                .apiResponse(apiResponse)
-//                .statusCode(apiResponse.getKod())
-//                .message(apiResponse.getMesaj())
-//                .sendErrorLog(exception);
+        if (throwable.getCause() instanceof DokaException) {
+            DokaException dokaException = (DokaException) throwable.getCause();
+            apiResponse.setMessage(dokaException.getErrorMessage());
+            httpStatus = dokaException.getErrorCode();
+        }
 
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .status(httpStatus)
                 .body(apiResponse);
     }
 

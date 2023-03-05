@@ -3,6 +3,7 @@ package com.doka.customer.entity;
 import com.doka.customer.util.Const;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "account")
 @Setter
 @Getter
+@ToString
 public class AccountEntity {
 
     @Id

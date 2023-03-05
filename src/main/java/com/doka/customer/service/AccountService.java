@@ -37,6 +37,20 @@ public class AccountService {
         return accountRepository.save(entity);
     }
 
+    @SneakyThrows
+    public AccountEntity findById(Long accountId) {
+        return accountRepository.findById(accountId)
+                .orElseThrow(() -> new DokaException("Account is not found", HttpStatus.NOT_FOUND));
+    }
 
+    @SneakyThrows
+    public AccountEntity findByIban(String iban) {
+        return accountRepository.findByIban(iban)
+                .orElseThrow(() -> new DokaException("Iban is not valid", HttpStatus.NOT_FOUND));
+    }
+
+    public void updateAccount(AccountEntity accountEntity) {
+        accountRepository.save(accountEntity);
+    }
 
 }
